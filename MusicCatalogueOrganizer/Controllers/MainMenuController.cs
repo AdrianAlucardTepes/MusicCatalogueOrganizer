@@ -1,18 +1,23 @@
 ﻿using MusicCatalogueOrganizer.Data;
 using MusicCatalogueOrganizer.Models;
+using MusicCatalogueOrganizer.UserInterface;
 
 namespace MusicCatalogueOrganizer.Controllers
 {
     public class MainMenuController
     {
         private readonly IMusicCatalogueRepository _repository;
+        private readonly ErrorsUI _errorsUI;
+        private readonly MenusUI _menusUI;
 
-        public MainMenuController(IMusicCatalogueRepository repository)
+        public MainMenuController(IMusicCatalogueRepository repository, MenusUI menusUI)
         {
             _repository = repository;
+            _errorsUI = new ErrorsUI();
+            _menusUI = menusUI;
         }
 
-        public void HandleInput(ConsoleKey key)
+        public void HandleMainMenuInput(ConsoleKey key)
         {
             switch (key)
             {
@@ -36,7 +41,9 @@ namespace MusicCatalogueOrganizer.Controllers
                     Environment.Exit(0);
                     break;
                 default:
-                    Console.WriteLine("Invalid choice, please try again.");
+                    Console.Clear();
+                    _errorsUI.InvalidInput();
+                    _menusUI.ShowMainMenu();
                     break;
             }
         }

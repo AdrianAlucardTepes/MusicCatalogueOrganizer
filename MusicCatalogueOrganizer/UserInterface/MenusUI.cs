@@ -9,30 +9,32 @@ namespace MusicCatalogueOrganizer.UserInterface
 
         public MenusUI(IMusicCatalogueRepository repository)
         {
-            _controller = new MainMenuController(repository);
+            _controller = new MainMenuController(repository, this);
         }
 
         public void ShowMainMenu()
         {
-            while (true)
-            {
-                Console.WriteLine("Welcome to MusicCatalogueOrganizer!");
-                Console.WriteLine();
-                Console.WriteLine("Please choose an option:");
-                Console.WriteLine("F1. Add new song");
-                Console.WriteLine("F2. Edit a song");
-                Console.WriteLine("F3. Delete a song");
-                Console.WriteLine("F4. Display songs");
-                Console.WriteLine("F5. Search for songs");
-                Console.WriteLine("F6. Exit");
-                Console.WriteLine();
+            var mainMenuHeadTitleText = "=== Music Catalogue Organizer ===";
+            var correspondingKeyText = "\nPress the corresponding function key to select an option:";
 
-                var key = Console.ReadKey().Key;
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine(mainMenuHeadTitleText);
+            Console.WriteLine(new string('-', mainMenuHeadTitleText.Length));
+            Console.ResetColor();
 
-                _controller.HandleInput(key);
+            Console.WriteLine("F1: Add new song");
+            Console.WriteLine("F2: Edit a song");
+            Console.WriteLine("F3: Delete a song");
+            Console.WriteLine("F4: Display songs");
+            Console.WriteLine("F5: Search for songs");
+            Console.WriteLine("F6: Exit");
 
-                Console.WriteLine();
-            }
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine(correspondingKeyText);
+            Console.WriteLine(new string('-', correspondingKeyText.Length));
+            Console.ResetColor();
+
+            Console.WriteLine();
         }
     }
 }
