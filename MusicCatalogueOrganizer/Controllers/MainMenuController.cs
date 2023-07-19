@@ -1,4 +1,5 @@
 ﻿using MusicCatalogueOrganizer.Data;
+using MusicCatalogueOrganizer.Models;
 
 namespace MusicCatalogueOrganizer.Controllers
 {
@@ -42,7 +43,37 @@ namespace MusicCatalogueOrganizer.Controllers
 
         private void AddNewSong()
         {
-            // ...
+            Console.WriteLine("Add New Song");
+            Console.WriteLine();
+
+            var song = new Song();
+
+            Console.Write("Title: ");
+            song.Title = Console.ReadLine();
+
+            Console.Write("Artist: ");
+            song.Artist = Console.ReadLine();
+
+            Console.Write("Album: ");
+            song.Album = Console.ReadLine();
+
+            Console.Write("Genre: ");
+            song.Genre = Console.ReadLine();
+
+            Console.Write("Rate (1-5): ");
+            int rate;
+            if (int.TryParse(Console.ReadLine(), out rate))
+                song.Rate = rate;
+
+            Console.Write("Release Date (yyyy-mm-dd): ");
+            DateTime releaseDate;
+            if (DateTime.TryParse(Console.ReadLine(), out releaseDate))
+                song.ReleaseDate = releaseDate;
+
+            _repository.AddSong(song);
+
+            Console.WriteLine();
+            Console.WriteLine("Song added successfully!");
         }
 
         private void EditSong()
