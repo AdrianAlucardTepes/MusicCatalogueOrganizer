@@ -10,13 +10,16 @@ namespace MusicCatalogueOrganizer
         public static void Main(string[] args)
         {
             var musicCatalogueRepository = new MusicCatalogueRepository();
-            var menusUI = new MenusUI();
+            var informitiveUI = new InformativeUI(musicCatalogueRepository);
+            var menusUI = new MenusUI(informitiveUI);
             var errorsUI = new ErrorsUI();
-            var dataController = new DataController(musicCatalogueRepository, errorsUI);
+            var dataController = new DataController(musicCatalogueRepository, errorsUI, menusUI);
 
             var mainMenuController = new MainMenuController(musicCatalogueRepository, menusUI, errorsUI, dataController);
-            
-            mainMenuController.Run();
+
+            AddTemporaryData(musicCatalogueRepository);
+
+            mainMenuController.CentralRun();
         }
 
         private static void AddTemporaryData(IMusicCatalogueRepository repository)

@@ -18,12 +18,12 @@ namespace MusicCatalogueOrganizer.Controllers
             _dataController = dataController;
         }
 
-        public void Run()
+        public void CentralRun()
         {
+            _menusUI.ShowMainMenu();
+
             while (true)
             {
-                _menusUI.ShowMainMenu();
-
                 var key = Console.ReadKey(true).Key;
 
                 switch (key)
@@ -50,6 +50,7 @@ namespace MusicCatalogueOrganizer.Controllers
                     default:
                         Console.Clear();
                         _errorsUI.InvalidInput();
+                        _menusUI.ShowMainMenu();
                         break;
                 }
             }

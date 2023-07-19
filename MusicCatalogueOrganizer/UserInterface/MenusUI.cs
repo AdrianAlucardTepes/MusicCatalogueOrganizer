@@ -2,6 +2,13 @@
 {
     public class MenusUI
     {
+        private readonly InformativeUI _informativeUI;
+
+        public MenusUI(InformativeUI informativeUI)
+        {
+            _informativeUI = informativeUI;
+        }
+
         public void ShowMainMenu()
         {
             var mainMenuHeadTitleText = "=== Music Catalogue Organizer ===";
@@ -23,6 +30,22 @@
             Console.WriteLine(correspondingKeyText);
             Console.WriteLine(new string('-', correspondingKeyText.Length));
             Console.ResetColor();
+
+            Console.WriteLine();
+        }
+
+        public void ShowSongsListMenu()
+        {
+            var header = $"=== List Of Songs Menu. ===";
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine(header);
+            Console.WriteLine(new string('-', header.Length));
+            Console.ResetColor();
+
+            _informativeUI.ShowTotalSongs();
+
+            Console.WriteLine("F1: Change the order of songs");
 
             Console.WriteLine();
         }
