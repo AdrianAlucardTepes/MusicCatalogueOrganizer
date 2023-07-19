@@ -26,8 +26,10 @@ namespace MusicCatalogueOrganizer
                 Album = "A Night at the Opera",
                 Genre = "Rock",
                 Rate = 5,
-                ReleaseDate = new DateTime(1975, 10, 31)
+                ReleaseDate = new DateTime(1975, 10, 31),
+                CreationDate = DateTime.Now
             });
+
             repository.AddSong(new Song
             {
                 Title = "Stairway to Heaven",
@@ -35,8 +37,10 @@ namespace MusicCatalogueOrganizer
                 Album = "Led Zeppelin IV",
                 Genre = "Rock",
                 Rate = 5,
-                ReleaseDate = new DateTime(1971, 11, 8)
+                ReleaseDate = new DateTime(1971, 11, 8),
+                CreationDate = DateTime.Now
             });
+
             repository.AddSong(new Song
             {
                 Title = "Hotel California",
@@ -44,7 +48,8 @@ namespace MusicCatalogueOrganizer
                 Album = "Hotel California",
                 Genre = "Rock",
                 Rate = 5,
-                ReleaseDate = new DateTime(1976, 12, 8)
+                ReleaseDate = new DateTime(1976, 12, 8),
+                CreationDate = DateTime.Now
             });
         }
     }

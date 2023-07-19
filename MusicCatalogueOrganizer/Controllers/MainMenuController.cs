@@ -68,12 +68,20 @@ namespace MusicCatalogueOrganizer.Controllers
                 return;
             }
 
-            Console.WriteLine("{0,-5} {1,-20} {2,-20} {3,-20} {4,-10} {5,-5} {6,-10}", "Id", "Title", "Artist", "Album", "Genre", "Rate", "Release Date");
+            Console.WriteLine("{0,-5} {1,-20} {2,-20} {3,-20} {4,-10} {5,-5} {6,-10} {6,-10}", "Id", "Title", "Artist", "Album", "Genre", "Rate", "Release Date", "Creation Date");
             Console.WriteLine(new string('-', 90));
 
             foreach (var song in songs)
             {
-                Console.WriteLine("{0,-5} {1,-20} {2,-20} {3,-20} {4,-10} {5,-5} {6,-10}", song.Id, song.Title, song.Artist, song.Album, song.Genre, song.Rate, song.ReleaseDate?.ToString("yyyy-MM-dd"));
+                Console.WriteLine("{0,-5} {1,-20} {2,-20} {3,-20} {4,-10} {5,-5} {6,-10 {6,-10}",
+                                  song.Id,
+                                  song.Title,
+                                  song.Artist,
+                                  song.Album,
+                                  song.Genre,
+                                  song.Rate,
+                                  song.ReleaseDate?.ToString("yyyy-MM-dd"),
+                                  song.CreationDate.ToString("yyyy-MM-dd"));
             }
         }
 
