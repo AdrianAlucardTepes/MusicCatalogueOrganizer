@@ -1,17 +1,7 @@
-﻿using MusicCatalogueOrganizer.Controllers;
-using MusicCatalogueOrganizer.Data;
-
-namespace MusicCatalogueOrganizer.UserInterface
+﻿namespace MusicCatalogueOrganizer.UserInterface
 {
     public class MenusUI
     {
-        private readonly MainMenuController _controller;
-
-        public MenusUI(IMusicCatalogueRepository repository)
-        {
-            _controller = new MainMenuController(repository, this);
-        }
-
         public void ShowMainMenu()
         {
             var mainMenuHeadTitleText = "=== Music Catalogue Organizer ===";

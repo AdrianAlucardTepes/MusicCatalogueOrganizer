@@ -12,6 +12,11 @@
             DisplayErrorUI("Invalid Id, Please Retry.");
         }
 
+        public void NoSongsFound()
+        {
+            DisplayErrorUI("No songs found.");
+        }
+
         private void DisplayErrorUI(string errorMessage)
         {
             Console.ForegroundColor = ConsoleColor.Red;

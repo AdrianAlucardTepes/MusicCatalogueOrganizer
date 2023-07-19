@@ -1,20 +1,22 @@
-﻿using MusicCatalogueOrganizer.Data;
+﻿using MusicCatalogueOrganizer.Controllers;
+using MusicCatalogueOrganizer.Data;
 using MusicCatalogueOrganizer.Models;
 using MusicCatalogueOrganizer.UserInterface;
 
 namespace MusicCatalogueOrganizer
 {
-    internal class Program
+    public class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
-            var repository = new MusicCatalogueRepository();
+            var musicCatalogueRepository = new MusicCatalogueRepository();
+            var menusUI = new MenusUI();
+            var errorsUI = new ErrorsUI();
+            var dataController = new DataController(musicCatalogueRepository, errorsUI);
 
-            // Add some temporary data
-            AddTemporaryData(repository);
-
-            var menusUI = new MenusUI(repository);
-            menusUI.ShowMainMenu();
+            var mainMenuController = new MainMenuController(musicCatalogueRepository, menusUI, errorsUI, dataController);
+            
+            mainMenuController.Run();
         }
 
         private static void AddTemporaryData(IMusicCatalogueRepository repository)
