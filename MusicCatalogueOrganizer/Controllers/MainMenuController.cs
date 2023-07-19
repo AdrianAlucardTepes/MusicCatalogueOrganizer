@@ -83,7 +83,28 @@ namespace MusicCatalogueOrganizer.Controllers
 
         private void DeleteSong()
         {
-            // ...
+            Console.WriteLine("Delete Song");
+            Console.WriteLine();
+
+            Console.Write("Enter the ID of the song to delete: ");
+            int id;
+            if (int.TryParse(Console.ReadLine(), out id))
+            {
+                var song = _repository.GetSongById(id);
+                if (song != null)
+                {
+                    _repository.DeleteSong(id);
+                    Console.WriteLine("Song deleted successfully!");
+                }
+                else
+                {
+                    Console.WriteLine("Song not found.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Invalid ID.");
+            }
         }
 
         private void DisplaySongs()

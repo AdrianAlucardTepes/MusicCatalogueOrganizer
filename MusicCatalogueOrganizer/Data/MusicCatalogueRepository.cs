@@ -29,10 +29,9 @@ namespace MusicCatalogueOrganizer.Data
         public void DeleteSong(int id)
         {
             var song = _songs.FirstOrDefault(s => s.Id == id);
+            
             if (song != null)
-            {
                 _songs.Remove(song);
-            }
         }
 
         public List<Song> GetAllSongs()
@@ -55,5 +54,4 @@ namespace MusicCatalogueOrganizer.Data
             return _songs.FirstOrDefault(s => s.Id == id);
         }
     }
-
 }

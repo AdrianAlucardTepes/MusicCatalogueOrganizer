@@ -1,9 +1,4 @@
 ﻿using MusicCatalogueOrganizer.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MusicCatalogueOrganizer.Data
 {
@@ -17,5 +12,4 @@ namespace MusicCatalogueOrganizer.Data
         List<Song> GetSongsByArtist(string artist);
         Song GetSongById(int id);
     }
-
 }
