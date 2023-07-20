@@ -13,7 +13,7 @@ namespace MusicCatalogueOrganizer
             var informitiveUI = new InformativeUI(musicCatalogueRepository);
             var menusUI = new MenusUI(informitiveUI);
             var errorsUI = new ErrorsUI();
-            var dataController = new DataController(musicCatalogueRepository, errorsUI, menusUI);
+            var dataController = new DataController(musicCatalogueRepository, errorsUI, menusUI, informitiveUI);
 
             var mainMenuController = new MainMenuController(musicCatalogueRepository, menusUI, errorsUI, dataController);
 
@@ -54,6 +54,39 @@ namespace MusicCatalogueOrganizer
                 Genre = "Rock",
                 Rate = 5,
                 ReleaseDate = new DateTime(1976, 12, 8),
+                CreationDate = DateTime.Now
+            });
+
+            repository.AddSong(new Song
+            {
+                Title = "Imagine",
+                Artist = "John Lennon",
+                Album = "Imagine",
+                Genre = "Rock",
+                Rate = 5,
+                ReleaseDate = new DateTime(1971, 9, 9),
+                CreationDate = DateTime.Now
+            });
+
+            repository.AddSong(new Song
+            {
+                Title = "What's Going On",
+                Artist = "Marvin Gaye",
+                Album = "What's Going On",
+                Genre = "Soul",
+                Rate = 5,
+                ReleaseDate = new DateTime(1971, 5, 21),
+                CreationDate = DateTime.Now
+            });
+
+            repository.AddSong(new Song
+            {
+                Title = "Superstition",
+                Artist = "Stevie Wonder",
+                Album = "Talking Book",
+                Genre = "Funk",
+                Rate = 5,
+                ReleaseDate = new DateTime(1972, 10, 24),
                 CreationDate = DateTime.Now
             });
         }

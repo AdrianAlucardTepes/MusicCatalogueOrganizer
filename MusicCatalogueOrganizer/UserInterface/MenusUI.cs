@@ -13,10 +13,10 @@
         {
             var mainMenuHeadTitleText = "=== Music Catalogue Organizer ===";
             var correspondingKeyText = "\nPress the corresponding function key to select an option:";
-
+            Console.Clear();
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine(mainMenuHeadTitleText);
-            Console.WriteLine(new string('-', mainMenuHeadTitleText.Length));
+            Console.WriteLine(new string('=', mainMenuHeadTitleText.Length));
             Console.ResetColor();
 
             Console.WriteLine("F1: Add new song");
@@ -28,7 +28,7 @@
 
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine(correspondingKeyText);
-            Console.WriteLine(new string('-', correspondingKeyText.Length));
+            Console.WriteLine(new string('=', correspondingKeyText.Length));
             Console.ResetColor();
 
             Console.WriteLine();
@@ -43,7 +43,7 @@
             Console.WriteLine(new string('-', header.Length));
             Console.ResetColor();
 
-            _informativeUI.ShowTotalSongs();
+            _informativeUI.DisplayTotalCountedSongs();
 
             Console.WriteLine("F1: Change the order of songs");
 
