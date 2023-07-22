@@ -5,13 +5,18 @@ namespace MusicCatalogueOrganizer.UserInterface
 {
     public class InformativeUI
     {
+        #region Private Fields
         private readonly IMusicCatalogueRepository _musicCatalogueRepository;
+        #endregion
 
+        #region Constructor
         public InformativeUI(IMusicCatalogueRepository musicCatalogueRepository)
         {
             _musicCatalogueRepository = musicCatalogueRepository;
         }
+        #endregion
 
+        #region Public Methods
         public void DisplayTotalCountedSongs()
         {
             Console.WriteLine();
@@ -51,5 +56,6 @@ namespace MusicCatalogueOrganizer.UserInterface
                 Console.ResetColor();
             }
         }
+        #endregion
     }
 }

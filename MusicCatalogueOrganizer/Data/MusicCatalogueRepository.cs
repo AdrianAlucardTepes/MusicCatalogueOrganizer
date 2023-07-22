@@ -4,9 +4,12 @@ namespace MusicCatalogueOrganizer.Data
 {
     public class MusicCatalogueRepository : IMusicCatalogueRepository
     {
+        #region Private Fields
         private List<Song> _songs = new List<Song>();
         private int _nextId = 1;
+        #endregion
 
+        #region Song Management
         public void AddSong(Song song)
         {
             song.Id = _nextId++;
@@ -29,11 +32,13 @@ namespace MusicCatalogueOrganizer.Data
         public void DeleteSong(int id)
         {
             var song = _songs.FirstOrDefault(s => s.Id == id);
-            
+
             if (song != null)
                 _songs.Remove(song);
         }
+        #endregion
 
+        #region Song Retrieval
         public List<Song> GetAllSongs()
         {
             return _songs.ToList();
@@ -53,5 +58,6 @@ namespace MusicCatalogueOrganizer.Data
         {
             return _songs.FirstOrDefault(s => s.Id == id);
         }
+        #endregion
     }
 }

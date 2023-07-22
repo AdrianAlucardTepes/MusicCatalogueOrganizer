@@ -5,11 +5,14 @@ namespace MusicCatalogueOrganizer.Controllers
 {
     public class MainMenuController
     {
+        #region Private Fields
         private readonly IMusicCatalogueRepository _musicCatalogueRepository;
         private readonly MenusUI _menusUI;
         private readonly ErrorsUI _errorsUI;
         private readonly DataController _dataController;
+        #endregion
 
+        #region Constructor
         public MainMenuController(IMusicCatalogueRepository musicCatalogueRepository, MenusUI menusUI, ErrorsUI errorsUI, DataController dataController)
         {
             _musicCatalogueRepository = musicCatalogueRepository;
@@ -17,7 +20,9 @@ namespace MusicCatalogueOrganizer.Controllers
             _errorsUI = errorsUI;
             _dataController = dataController;
         }
+        #endregion
 
+        #region Public Methods
         public void CentralRun()
         {
             _menusUI.ShowMainMenu();
@@ -55,5 +60,6 @@ namespace MusicCatalogueOrganizer.Controllers
                 }
             }
         }
+        #endregion
     }
 }

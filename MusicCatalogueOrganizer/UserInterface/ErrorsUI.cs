@@ -2,6 +2,7 @@
 {
     public class ErrorsUI
     {
+        #region Public Methods
         public void InvalidInput()
         {
             DisplayErrorUI("Invalid Input Key, Please Retry.");
@@ -16,7 +17,9 @@
         {
             DisplayErrorUI("No songs found.");
         }
+        #endregion
 
+        #region Private Methods
         private void DisplayErrorUI(string errorMessage)
         {
             Console.ForegroundColor = ConsoleColor.Red;
@@ -26,5 +29,6 @@
 
             Console.WriteLine();
         }
+        #endregion
     }
 }

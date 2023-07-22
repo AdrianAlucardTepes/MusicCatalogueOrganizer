@@ -2,13 +2,18 @@
 {
     public class MenusUI
     {
+        #region Private Fields
         private readonly InformativeUI _informativeUI;
+        #endregion
 
+        #region Constructor
         public MenusUI(InformativeUI informativeUI)
         {
             _informativeUI = informativeUI;
         }
+        #endregion
 
+        #region Public Methods
         public void ShowMainMenu()
         {
             var mainMenuHeadTitleText = "=== Music Catalogue Organizer ===";
@@ -49,5 +54,6 @@
 
             Console.WriteLine();
         }
+        #endregion
     }
 }
