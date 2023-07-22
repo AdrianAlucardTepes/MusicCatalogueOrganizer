@@ -7,22 +7,20 @@ namespace MusicCatalogueOrganizer
 {
     public class Program
     {
-        #region Main Method
         public static void Main(string[] args)
         {
             var musicCatalogueRepository = new MusicCatalogueRepository();
-            var informitiveUI = new InformativeUI(musicCatalogueRepository);
-            var menusUI = new MenusUI(informitiveUI);
+            var informativeUI = new InformativeUI(musicCatalogueRepository);
+            var menusUI = new MenusUI(informativeUI);
             var errorsUI = new ErrorsUI();
-            var dataController = new DataController(musicCatalogueRepository, errorsUI, menusUI, informitiveUI);
-            var mainMenuController = new MainMenuController(musicCatalogueRepository, menusUI, errorsUI, dataController);
+            var dataController = new DataController(musicCatalogueRepository, errorsUI, informativeUI);
+            var displayAllSongsController = new DisplayAllSongsController(musicCatalogueRepository, errorsUI, menusUI, informativeUI);
+            var mainMenuController = new MainMenuController(dataController, menusUI, informativeUI, errorsUI, displayAllSongsController);
 
             AddTemporaryData(musicCatalogueRepository);
 
-            mainMenuController.CentralRun();
+            mainMenuController.MainMenuManager();
         }
-        #endregion
-
         #region Private Methods
         private static void AddTemporaryData(IMusicCatalogueRepository repository)
         {

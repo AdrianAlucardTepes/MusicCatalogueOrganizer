@@ -6,29 +6,29 @@ namespace MusicCatalogueOrganizer.Controllers
     public class MainMenuController
     {
         #region Private Fields
-        private readonly IMusicCatalogueRepository _musicCatalogueRepository;
-        private readonly MenusUI _menusUI;
-        private readonly ErrorsUI _errorsUI;
         private readonly DataController _dataController;
+        private readonly MenusUI _menusUI;
+        private readonly InformativeUI _informativeUI;
+        private readonly ErrorsUI _errorsUI;
+        private readonly DisplayAllSongsController _displayAllSongsController;
         #endregion
 
         #region Constructor
-        public MainMenuController(IMusicCatalogueRepository musicCatalogueRepository, MenusUI menusUI, ErrorsUI errorsUI, DataController dataController)
+        public MainMenuController(DataController dataController, MenusUI menusUI, InformativeUI informativeUI, ErrorsUI errorsUI, DisplayAllSongsController displayAllSongsController)
         {
-            _musicCatalogueRepository = musicCatalogueRepository;
+            _dataController = dataController;
             _menusUI = menusUI;
             _errorsUI = errorsUI;
-            _dataController = dataController;
+            _informativeUI = informativeUI;
+            _displayAllSongsController = displayAllSongsController;
         }
         #endregion
 
-        #region Public Methods
-        public void CentralRun()
+        public void MainMenuManager()
         {
-            _menusUI.ShowMainMenu();
-
             while (true)
             {
+                _menusUI.ShowMainMenu();
                 var key = Console.ReadKey(true).Key;
 
                 switch (key)
@@ -44,22 +44,22 @@ namespace MusicCatalogueOrganizer.Controllers
                         break;
                     case ConsoleKey.F4:
                         Console.Clear();
-                        _dataController.DisplaySongs();
+                        _displayAllSongsController.DisplaySongsMenuManager();
                         break;
                     case ConsoleKey.F5:
                         // Handle searching for songs
                         break;
                     case ConsoleKey.F6:
-                        // Exit the application
+                        Console.Clear();
+                        _informativeUI.FarewellMessage();
+                        Environment.Exit(0);
                         return;
                     default:
                         Console.Clear();
                         _errorsUI.InvalidInput();
-                        _menusUI.ShowMainMenu();
                         break;
                 }
             }
         }
-        #endregion
     }
 }

@@ -31,7 +31,6 @@ namespace MusicCatalogueOrganizer.UserInterface
 
             Console.WriteLine();
         }
-
         public void DisplayAllSongs(List<Song> songs)
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
@@ -55,6 +54,12 @@ namespace MusicCatalogueOrganizer.UserInterface
                 Console.WriteLine($"{song.Id,-3} | {song.Title,-20} | {song.Artist,-20} | {song.Album,-30} | {song.Genre,-15} | {song.Rate,-5} | {releaseDate,-15} | {creationDate,-15}");
                 Console.ResetColor();
             }
+        }
+        public void FarewellMessage()
+        {
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+            Console.WriteLine("Farewell & Thank you for using my application :)");
+            Console.ResetColor();
         }
         #endregion
     }
