@@ -7,12 +7,10 @@
         {
             DisplayErrorUI("Invalid Input Key, Please Retry.");
         }
-
         public void InvalidID()
         {
             DisplayErrorUI("Invalid Id, Please Retry.");
         }
-
         public void NoSongsFound()
         {
             DisplayErrorUI("No songs found.");

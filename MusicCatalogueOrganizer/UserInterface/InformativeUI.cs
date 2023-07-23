@@ -55,6 +55,18 @@ namespace MusicCatalogueOrganizer.UserInterface
                 Console.ResetColor();
             }
         }
+        public void DisplayOrder(bool isAscendingOrder)
+        {
+            Console.WriteLine();
+            var message = isAscendingOrder ? "Sorted By: Creation Date: Oldest." : "Sorted By: Creation Date: Newest.";
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine(message);
+            Console.WriteLine(new string('-', message.Length));
+            Console.ResetColor();
+
+            Console.WriteLine();
+        }
         public void FarewellMessage()
         {
             Console.ForegroundColor = ConsoleColor.DarkMagenta;
