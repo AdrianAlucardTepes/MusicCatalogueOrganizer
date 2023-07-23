@@ -24,12 +24,14 @@
             Console.WriteLine(new string('=', mainMenuHeadTitleText.Length));
             Console.ResetColor();
 
-            Console.WriteLine("F1: Add new song");
-            Console.WriteLine("F2: Edit a song");
-            Console.WriteLine("F3: Delete a song");
-            Console.WriteLine("F4: Display songs");
-            Console.WriteLine("F5: Search for songs");
-            Console.WriteLine("F6: Exit");
+            Console.WriteLine("F1: Add New Song");
+            Console.WriteLine("F2: Manage Lists");
+            Console.WriteLine("F3: Edit Song");
+            Console.WriteLine("F4: Delete Song");
+            Console.WriteLine("F5: Delete All Songs");
+            Console.WriteLine("F6: Display All Songs");
+            Console.WriteLine("F7: Search Songs");
+            Console.WriteLine("F8: Exit");
 
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine(correspondingKeyText);

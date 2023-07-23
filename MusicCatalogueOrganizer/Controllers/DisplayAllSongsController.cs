@@ -11,7 +11,6 @@ namespace MusicCatalogueOrganizer.Controllers
         private readonly ErrorsUI _errorsUI;
         private readonly MenusUI _menusUI;
         private readonly InformativeUI _informativeUI;
-        //private readonly MainMenuController _mainMenuController;
         #endregion
 
         #region Constructor
@@ -21,8 +20,6 @@ namespace MusicCatalogueOrganizer.Controllers
             _errorsUI = errorsUI;
             _menusUI = menusUI;
             _informativeUI = informativeUI;
-            //_mainMenuController = mainMenuController;
-
         }
         #endregion
 
@@ -65,7 +62,6 @@ namespace MusicCatalogueOrganizer.Controllers
                         break;
                     case ConsoleKey.F9:
                         Console.Clear();
-                        //MainMenuController
                         return;
                     case ConsoleKey.F10:
                         Console.Clear();
@@ -81,6 +77,5 @@ namespace MusicCatalogueOrganizer.Controllers
                 }
             }
         }
-
     }
 }
