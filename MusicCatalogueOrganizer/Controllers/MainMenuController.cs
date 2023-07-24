@@ -8,13 +8,10 @@ namespace MusicCatalogueOrganizer.Controllers
     public class MainMenuController
     {
         #region Private Fields
-        // The user interface used to display menus.
+        // Dependencies
         private readonly MenusUI _menusUI;
-        // The user interface used to display information.
         private readonly InformativeUI _informativeUI;
-        // The user interface used to display errors.
         private readonly ErrorsUI _errorsUI;
-        // The controller used to display all songs.
         private readonly DisplayAllSongsController _displayAllSongsController;
         #endregion
 
@@ -22,10 +19,10 @@ namespace MusicCatalogueOrganizer.Controllers
         /// <summary>
         /// Initializes a new instance of the MainMenuController class with the specified dependencies.
         /// </summary>
-        /// <param name="menusUI">The user interface used to display menus.</param>
-        /// <param name="informativeUI">The user interface used to display information.</param>
-        /// <param name="errorsUI">The user interface used to display errors.</param>
-        /// <param name="displayAllSongsController">The controller used to display all songs.</param>
+        /// <param name="menusUI">The MenusUI instance to use for displaying menus.</param>
+        /// <param name="informativeUI">The InformativeUI instance to use for displaying informative messages.</param>
+        /// <param name="errorsUI">The ErrorsUI instance to use for displaying error messages.</param>
+        /// <param name="displayAllSongsController">The DisplayAllSongsController instance to use for managing the display of all songs.</param>
         public MainMenuController(MenusUI menusUI, InformativeUI informativeUI, ErrorsUI errorsUI, DisplayAllSongsController displayAllSongsController)
         {
             _menusUI = menusUI;
@@ -37,17 +34,20 @@ namespace MusicCatalogueOrganizer.Controllers
 
         #region Public Methods
         /// <summary>
-        /// Displays the main menu and handles user input.
+        /// Displays the main menu to the user and handles user input.
         /// </summary>
         public void MainMenuManager()
         {
             while (true)
             {
+                // Show the main menu
                 _menusUI.ShowMainMenu();
+
+                // Get the user's input
                 var key = Console.ReadKey(true).Key;
 
+                // Determine which option the user selected
                 MainMenuOption? selectedOption = null;
-
                 switch (key)
                 {
                     case ConsoleKey.F1:
@@ -80,46 +80,62 @@ namespace MusicCatalogueOrganizer.Controllers
                         break;
                 }
 
+                // Handle the user's selection
                 if (selectedOption.HasValue)
-                {
-                    switch (selectedOption.Value)
-                    {
-                        case MainMenuOption.AddNewSong:
-                            // Handle adding a new song
-                            break;
-                        case MainMenuOption.ManageLists:
-                            // Handle managing lists
-                            break;
-                        case MainMenuOption.EditSong:
-                            // Handle editing a song
-                            break;
-                        case MainMenuOption.DeleteSong:
-                            // Handle deleting a song
-                            break;
-                        case MainMenuOption.DeleteAllSongs:
-                            // Handle deleting all songs
-                            break;
-                        case MainMenuOption.DisplayAllSongs:
-                            Console.Clear();
-                            _displayAllSongsController.DisplaySongsMenuManager();
-                            break;
-                        case MainMenuOption.SearchSongs:
-                            // Handle searching for songs
-                            break;
-                        case MainMenuOption.Exit:
-                            Console.Clear();
-                            _informativeUI.FarewellMessage();
-                            Environment.Exit(0);
-                            return;
-                    }
-                }
+                    HandleSelectedOption(selectedOption.Value);
+            }
+        }
+        #endregion
+
+        #region Private Methods
+        /// <summary>
+        /// Handles the user's selection in the main menu.
+        /// </summary>
+        /// <param name="selectedOption">The selected option.</param>
+        private void HandleSelectedOption(MainMenuOption selectedOption)
+        {
+            switch (selectedOption)
+            {
+                case MainMenuOption.AddNewSong:
+                    Console.Clear();
+                    _errorsUI.FeatureNotImplemented();
+                    break;
+                case MainMenuOption.ManageLists:
+                    Console.Clear();
+                    _errorsUI.FeatureNotImplemented();
+                    break;
+                case MainMenuOption.EditSong:
+                    Console.Clear();
+                    _errorsUI.FeatureNotImplemented();
+                    break;
+                case MainMenuOption.DeleteSong:
+                    Console.Clear();
+                    _errorsUI.FeatureNotImplemented();
+                    break;
+                case MainMenuOption.DeleteAllSongs:
+                    Console.Clear();
+                    _errorsUI.FeatureNotImplemented();
+                    break;
+                case MainMenuOption.DisplayAllSongs:
+                    Console.Clear();
+                    _displayAllSongsController.DisplaySongsMenuManager();
+                    break;
+                case MainMenuOption.SearchSongs:
+                    Console.Clear();
+                    _errorsUI.FeatureNotImplemented();
+                    break;
+                case MainMenuOption.Exit:
+                    Console.Clear();
+                    _informativeUI.FarewellMessage();
+                    Environment.Exit(0);
+                    return;
             }
         }
         #endregion
 
         #region Private Enums
         /// <summary>
-        /// Represents the different options in the main menu.
+        /// Represents the options available in the main menu.
         /// </summary>
         private enum MainMenuOption
         {

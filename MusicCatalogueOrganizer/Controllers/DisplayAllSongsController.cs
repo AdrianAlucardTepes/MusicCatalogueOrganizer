@@ -5,33 +5,28 @@ using MusicCatalogueOrganizer.UserInterface;
 namespace MusicCatalogueOrganizer.Controllers
 {
     /// <summary>
-    /// The DisplayAllSongsController class is responsible for displaying all songs in the catalog.
+    /// The DisplayAllSongsController class is responsible for managing the display of all songs in the application.
     /// </summary>
     public class DisplayAllSongsController
     {
         #region Private Fields
-        // The repository used to manage the data.
+        // Dependencies
         private readonly IMusicCatalogueRepository _musicCatalogueRepository;
-        // The user interface used to display errors.
         private readonly ErrorsUI _errorsUI;
-        // The user interface used to display menus.
         private readonly MenusUI _menusUI;
-        // The user interface used to display information.
         private readonly InformativeUI _informativeUI;
-        // The selected sorting option.
+        // Sorting options
         private SortOption _selectedSortOption = SortOption.CreationDate;
-        // The current order of the songs (true for ascending, false for descending).
-        private bool _isAscendingOrder = true;
         #endregion
 
         #region Constructor
         /// <summary>
         /// Initializes a new instance of the DisplayAllSongsController class with the specified dependencies.
         /// </summary>
-        /// <param name="musicCatalogueRepository">The repository used to manage the data.</param>
-        /// <param name="errorsUI">The user interface used to display errors.</param>
-        /// <param name="menusUI">The user interface used to display menus.</param>
-        /// <param name="informativeUI">The user interface used to display information.</param>
+        /// <param name="musicCatalogueRepository">The IMusicCatalogueRepository instance to use for retrieving songs.</param>
+        /// <param name="errorsUI">The ErrorsUI instance to use for displaying error messages.</param>
+        /// <param name="menusUI">The MenusUI instance to use for displaying menus.</param>
+        /// <param name="informativeUI">The InformativeUI instance to use for displaying informative messages.</param>
         public DisplayAllSongsController(IMusicCatalogueRepository musicCatalogueRepository, ErrorsUI errorsUI, MenusUI menusUI, InformativeUI informativeUI)
         {
             _musicCatalogueRepository = musicCatalogueRepository;
@@ -43,49 +38,52 @@ namespace MusicCatalogueOrganizer.Controllers
 
         #region Public Methods
         /// <summary>
-        /// Displays the songs menu and handles user input.
+        /// Displays the songs list menu to the user and handles user input.
         /// </summary>
         public void DisplaySongsMenuManager()
         {
             var songs = _musicCatalogueRepository.GetAllSongs();
-
             while (true)
             {
-                Console.Clear();
+                // Show the songs list menu
                 _menusUI.ShowSongsListMenu();
-                DisplaySongs(songs);
 
+                // Display all songs
+                _informativeUI.DisplayAllSongs(songs);
+
+                // Get the user's input
                 var key = Console.ReadKey(true).Key;
 
+                // Determine which option the user selected
                 switch (key)
                 {
                     case ConsoleKey.F1:
-                        // Toggle the order of the songs between ascending and descending.
-                        _isAscendingOrder = !_isAscendingOrder;
+                        DisplaySongsListOption(ConsoleKey.F1, songs);
                         break;
                     case ConsoleKey.F2:
-                        _selectedSortOption = SortOption.SongNameAlphabetical;
+                        DisplaySongsListOption(ConsoleKey.F2, songs);
                         break;
                     case ConsoleKey.F3:
-                        _selectedSortOption = SortOption.ReleaseDate;
+                        DisplaySongsListOption(ConsoleKey.F3, songs);
                         break;
                     case ConsoleKey.F4:
-                        _selectedSortOption = SortOption.Rate;
+                        DisplaySongsListOption(ConsoleKey.F4, songs);
                         break;
                     case ConsoleKey.F5:
-                        _selectedSortOption = SortOption.GenreAlphabetical;
+                        DisplaySongsListOption(ConsoleKey.F5, songs);
                         break;
                     case ConsoleKey.F6:
-                        _selectedSortOption = SortOption.AlbumAlphabetical;
+                        DisplaySongsListOption(ConsoleKey.F6, songs);
                         break;
                     case ConsoleKey.F7:
-                        _selectedSortOption = SortOption.AlbumReleaseDate;
+                        DisplaySongsListOption(ConsoleKey.F7, songs);
                         break;
                     case ConsoleKey.F8:
-                        // Perform a manual search
+                        DisplaySongsListOption(ConsoleKey.F8, songs);
                         break;
                     case ConsoleKey.F9:
                         Console.Clear();
+                        // Return to Main Menu
                         return;
                     case ConsoleKey.F10:
                         Console.Clear();
@@ -103,47 +101,96 @@ namespace MusicCatalogueOrganizer.Controllers
 
         #region Private Methods
         /// <summary>
-        /// Sorts and displays the specified songs based on the selected sorting option and order.
+        /// Display the songs list based on the selected sort option.
         /// </summary>
-        /// <param name="songs">The songs to sort and display.</param>
+        /// <param name="key">The console key representing the selected sort option.</param>
+        /// <param name="songs">The list of songs to display.</param>
+        private void DisplaySongsListOption(ConsoleKey key, List<Song> songs)
+        {
+            // Set the selected sort option based on the pressed key
+            switch (key)
+            {
+                case ConsoleKey.F1:
+                    _selectedSortOption = SortOption.CreationDate;
+                    break;
+                case ConsoleKey.F2:
+                    _selectedSortOption = SortOption.SongNameAlphabetical;
+                    break;
+                case ConsoleKey.F3:
+                    _selectedSortOption = SortOption.ReleaseDate;
+                    break;
+                case ConsoleKey.F4:
+                    _selectedSortOption = SortOption.Rate;
+                    break;
+                case ConsoleKey.F5:
+                    _selectedSortOption = SortOption.GenreAlphabetical;
+                    break;
+                case ConsoleKey.F6:
+                    _selectedSortOption = SortOption.AlbumAlphabetical;
+                    break;
+                case ConsoleKey.F7:
+                    _selectedSortOption = SortOption.AlbumReleaseDate;
+                    break;
+                case ConsoleKey.F8:
+                    break;
+                default:
+                    Console.Clear();
+                    _errorsUI.InvalidInput();
+                    return;
+            }
+            // Display the sorted songs
+            DisplaySongs(songs);
+        }
+
+        /// <summary>
+        /// Sorts and displays the list of songs.
+        /// </summary>
+        /// <param name="songs">The list of songs to sort and display.</param>
         private void DisplaySongs(List<Song> songs)
         {
-            // Sort the songs based on the selected sorting option and order.
+            // Sort the songs based on the selected sorting option.
             switch (_selectedSortOption)
             {
                 case SortOption.CreationDate:
-                    if (_isAscendingOrder)
-                        songs = songs.OrderBy(s => s.CreationDate).ToList();
-                    else
-                        songs = songs.OrderByDescending(s => s.CreationDate).ToList();
+                    Console.Clear();
+                    _errorsUI.FeatureNotImplemented();
                     break;
-
                 case SortOption.SongNameAlphabetical:
-                    // TODO: Implement sorting by song name alphabetical.
+                    Console.Clear();
+                    _errorsUI.FeatureNotImplemented();
                     break;
                 case SortOption.ReleaseDate:
-                    // TODO: Implement sorting by release date.
+                    Console.Clear();
+                    _errorsUI.FeatureNotImplemented();
                     break;
                 case SortOption.Rate:
-                    // TODO: Implement sorting by rate.
+                    Console.Clear();
+                    _errorsUI.FeatureNotImplemented();
                     break;
                 case SortOption.GenreAlphabetical:
-                    // TODO: Implement sorting by genre alphabetical.
+                    Console.Clear();
+                    _errorsUI.FeatureNotImplemented();
                     break;
                 case SortOption.AlbumAlphabetical:
-                    // TODO: Implement sorting by album alphabetical.
+                    Console.Clear();
+                    _errorsUI.FeatureNotImplemented();
                     break;
                 case SortOption.AlbumReleaseDate:
-                    // TODO: Implement sorting by album release date.
+                    Console.Clear();
+                    _errorsUI.FeatureNotImplemented();
+                    break;
+                default:
+                    Console.Clear();
                     break;
             }
-
-            // Display the sorted songs.
-            _informativeUI.DisplayOrder(_isAscendingOrder);
-            _informativeUI.DisplayAllSongs(songs);
         }
+        #endregion
 
-        public enum SortOption
+        #region Private Enums
+        /// <summary>
+        /// Represents the sorting options available for the list of songs.
+        /// </summary>
+        private enum SortOption
         {
             CreationDate,
             SongNameAlphabetical,

@@ -21,6 +21,7 @@ namespace MusicCatalogueOrganizer
 
             mainMenuController.MainMenuManager();
         }
+
         #region Private Methods
         private static void AddTemporaryData(IMusicCatalogueRepository repository)
         {
