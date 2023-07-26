@@ -15,12 +15,10 @@
         {
             DisplayErrorUI("No songs found.");
         }
-
         public void FeatureNotImplemented()
         {
             DisplayErrorUI("This feature is not implemented yet.");
         }
-
         #endregion
 
         #region Private Methods

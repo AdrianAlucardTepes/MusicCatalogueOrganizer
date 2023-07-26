@@ -43,6 +43,7 @@ namespace MusicCatalogueOrganizer.Controllers
         public void DisplaySongsMenuManager()
         {
             var songs = _musicCatalogueRepository.GetAllSongs();
+            
             while (true)
             {
                 // Show the songs list menu
@@ -58,28 +59,28 @@ namespace MusicCatalogueOrganizer.Controllers
                 switch (key)
                 {
                     case ConsoleKey.F1:
-                        DisplaySongsListOption(ConsoleKey.F1, songs);
+                        DisplaySongsListOptions(ConsoleKey.F1, songs);
                         break;
                     case ConsoleKey.F2:
-                        DisplaySongsListOption(ConsoleKey.F2, songs);
+                        DisplaySongsListOptions(ConsoleKey.F2, songs);
                         break;
                     case ConsoleKey.F3:
-                        DisplaySongsListOption(ConsoleKey.F3, songs);
+                        DisplaySongsListOptions(ConsoleKey.F3, songs);
                         break;
                     case ConsoleKey.F4:
-                        DisplaySongsListOption(ConsoleKey.F4, songs);
+                        DisplaySongsListOptions(ConsoleKey.F4, songs);
                         break;
                     case ConsoleKey.F5:
-                        DisplaySongsListOption(ConsoleKey.F5, songs);
+                        DisplaySongsListOptions(ConsoleKey.F5, songs);
                         break;
                     case ConsoleKey.F6:
-                        DisplaySongsListOption(ConsoleKey.F6, songs);
+                        DisplaySongsListOptions(ConsoleKey.F6, songs);
                         break;
                     case ConsoleKey.F7:
-                        DisplaySongsListOption(ConsoleKey.F7, songs);
+                        DisplaySongsListOptions(ConsoleKey.F7, songs);
                         break;
                     case ConsoleKey.F8:
-                        DisplaySongsListOption(ConsoleKey.F8, songs);
+                        DisplaySongsListOptions(ConsoleKey.F8, songs);
                         break;
                     case ConsoleKey.F9:
                         Console.Clear();
@@ -105,7 +106,7 @@ namespace MusicCatalogueOrganizer.Controllers
         /// </summary>
         /// <param name="key">The console key representing the selected sort option.</param>
         /// <param name="songs">The list of songs to display.</param>
-        private void DisplaySongsListOption(ConsoleKey key, List<Song> songs)
+        private void DisplaySongsListOptions(ConsoleKey key, List<Song> songs)
         {
             // Set the selected sort option based on the pressed key
             switch (key)
@@ -138,7 +139,7 @@ namespace MusicCatalogueOrganizer.Controllers
                     _errorsUI.InvalidInput();
                     return;
             }
-            // Display the sorted songs
+
             DisplaySongs(songs);
         }
 
