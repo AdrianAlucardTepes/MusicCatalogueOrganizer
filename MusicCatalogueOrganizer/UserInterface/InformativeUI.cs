@@ -73,6 +73,49 @@ namespace MusicCatalogueOrganizer.UserInterface
 
             Console.WriteLine();
         }
+
+        public void DisplaySongNameAlphabeticalSortOrder(bool isSortedAscending)
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Sorted by Title in: {0} order.",
+                isSortedAscending ? "ascending" : "descending");
+            Console.ResetColor();
+
+            Console.WriteLine();
+        }
+
+        public void DisplayReleaseDateSortOrder(bool isSortedAscending)
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Sorted by Release Date from: {0} to {1}.",
+                isSortedAscending ? "oldest" : "newest",
+                isSortedAscending ? "newest" : "oldest");
+            Console.ResetColor();
+
+            Console.WriteLine( );
+        }
+
+        public void DisplayRateSortOrder(bool isSortedAscending)
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Sorted by Rate from {0} to {1}.",
+                isSortedAscending ? "lowest" : "highest",
+                isSortedAscending ? "highest" : "lowest");
+            Console.ResetColor();
+
+            Console.WriteLine();
+        }
+
+        public void DisplayGenreAlphabeticalSortOrder(bool isSortedAscending)
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Sorted by Genre in {0} order.",
+                isSortedAscending ? "ascending" : "descending");
+            Console.ResetColor();
+
+            Console.WriteLine();
+        }
+
         #endregion
     }
 }

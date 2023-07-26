@@ -42,7 +42,7 @@ namespace MusicCatalogueOrganizer
                 Artist = "Led Zeppelin",
                 Album = "Led Zeppelin IV",
                 Genre = "Rock",
-                Rate = 5,
+                Rate = 4,
                 ReleaseDate = new DateTime(1971, 11, 8),
                 CreationDate = DateTime.Now
             });
@@ -64,7 +64,7 @@ namespace MusicCatalogueOrganizer
                 Artist = "John Lennon",
                 Album = "Imagine",
                 Genre = "Rock",
-                Rate = 5,
+                Rate = 4,
                 ReleaseDate = new DateTime(1971, 9, 9),
                 CreationDate = DateTime.Now
             });
@@ -75,7 +75,7 @@ namespace MusicCatalogueOrganizer
                 Artist = "Marvin Gaye",
                 Album = "What's Going On",
                 Genre = "Soul",
-                Rate = 5,
+                Rate = 3,
                 ReleaseDate = new DateTime(1971, 5, 21),
                 CreationDate = DateTime.Now
             });
@@ -86,7 +86,7 @@ namespace MusicCatalogueOrganizer
                 Artist = "Stevie Wonder",
                 Album = "Talking Book",
                 Genre = "Funk",
-                Rate = 5,
+                Rate = 2,
                 ReleaseDate = new DateTime(1972, 10, 24),
                 CreationDate = DateTime.Now
             });

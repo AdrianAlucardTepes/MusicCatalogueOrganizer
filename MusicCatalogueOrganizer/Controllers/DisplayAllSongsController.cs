@@ -101,18 +101,22 @@ namespace MusicCatalogueOrganizer.Controllers
 
                 case ConsoleKey.F2:
                     _selectedSortOption = SortOption.SongNameAlphabetical;
+                    _isSortedAscending = !_isSortedAscending;
                     break;
 
                 case ConsoleKey.F3:
                     _selectedSortOption = SortOption.ReleaseDate;
+                    _isSortedAscending = !_isSortedAscending;
                     break;
 
                 case ConsoleKey.F4:
                     _selectedSortOption = SortOption.Rate;
+                    _isSortedAscending = !_isSortedAscending;
                     break;
 
                 case ConsoleKey.F5:
                     _selectedSortOption = SortOption.GenreAlphabetical;
+                    _isSortedAscending = !_isSortedAscending;
                     break;
 
                 case ConsoleKey.F6:
@@ -143,31 +147,19 @@ namespace MusicCatalogueOrganizer.Controllers
                     break;
 
                 case SortOption.SongNameAlphabetical:
-                    Console.Clear();
-                    _errorsUI.FeatureNotImplemented();
-                    _menusUI.ShowSongsListMenu();
-                    _informativeUI.DisplayAllSongs(songs);
+                    SortBySongNameAlphabetical(songs);
                     break;
 
                 case SortOption.ReleaseDate:
-                    Console.Clear();
-                    _errorsUI.FeatureNotImplemented();
-                    _menusUI.ShowSongsListMenu();
-                    _informativeUI.DisplayAllSongs(songs);
+                    SortByReleaseDate(songs);
                     break;
 
                 case SortOption.Rate:
-                    Console.Clear();
-                    _errorsUI.FeatureNotImplemented();
-                    _menusUI.ShowSongsListMenu();
-                    _informativeUI.DisplayAllSongs(songs);
+                    SortByRate(songs);
                     break;
 
                 case SortOption.GenreAlphabetical:
-                    Console.Clear();
-                    _errorsUI.FeatureNotImplemented();
-                    _menusUI.ShowSongsListMenu();
-                    _informativeUI.DisplayAllSongs(songs);
+                    SortByGenreAlphabetical(songs);
                     break;
 
                 case SortOption.AlbumAlphabetical:
@@ -200,6 +192,54 @@ namespace MusicCatalogueOrganizer.Controllers
 
             _menusUI.ShowSongsListMenu();
             _informativeUI.DisplayCreationDateSortOrder(_isSortedAscending);
+            _informativeUI.DisplayAllSongs(songs);
+        }
+
+        private void SortBySongNameAlphabetical(List<Song> songs)
+        {
+            Console.Clear();
+            if (_isSortedAscending)
+                songs = songs.OrderBy(song => song.Title).ToList();
+            else
+                songs = songs.OrderByDescending(song => song.Title).ToList();
+            _menusUI.ShowSongsListMenu();
+            _informativeUI.DisplaySongNameAlphabeticalSortOrder(_isSortedAscending);
+            _informativeUI.DisplayAllSongs(songs);
+        }
+
+        private void SortByReleaseDate(List<Song> songs)
+        {
+            Console.Clear();
+            if (_isSortedAscending)
+                songs = songs.OrderBy(song => song.ReleaseDate).ToList();
+            else
+                songs = songs.OrderByDescending(song => song.ReleaseDate).ToList();
+            _menusUI.ShowSongsListMenu();
+            _informativeUI.DisplayReleaseDateSortOrder(_isSortedAscending);
+            _informativeUI.DisplayAllSongs(songs);
+        }
+
+        private void SortByRate(List<Song> songs)
+        {
+            Console.Clear();
+            if (_isSortedAscending)
+                songs = songs.OrderBy(song => song.Rate).ToList();
+            else
+                songs = songs.OrderByDescending(song => song.Rate).ToList();
+            _menusUI.ShowSongsListMenu();
+            _informativeUI.DisplayRateSortOrder(_isSortedAscending);
+            _informativeUI.DisplayAllSongs(songs);
+        }
+
+        private void SortByGenreAlphabetical(List<Song> songs)
+        {
+            Console.Clear();
+            if (_isSortedAscending)
+                songs = songs.OrderBy(song => song.Genre).ToList();
+            else
+                songs = songs.OrderByDescending(song => song.Genre).ToList();
+            _menusUI.ShowSongsListMenu();
+            _informativeUI.DisplayGenreAlphabeticalSortOrder(_isSortedAscending);
             _informativeUI.DisplayAllSongs(songs);
         }
 
