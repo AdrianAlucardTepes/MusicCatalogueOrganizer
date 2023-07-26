@@ -13,6 +13,7 @@ namespace MusicCatalogueOrganizer.Controllers
         private readonly InformativeUI _informativeUI;
         private readonly ErrorsUI _errorsUI;
         private readonly DisplayAllSongsController _displayAllSongsController;
+        private readonly DataController _dataController;
         #endregion
 
         #region Constructor
@@ -23,12 +24,13 @@ namespace MusicCatalogueOrganizer.Controllers
         /// <param name="informativeUI">The InformativeUI instance to use for displaying informative messages.</param>
         /// <param name="errorsUI">The ErrorsUI instance to use for displaying error messages.</param>
         /// <param name="displayAllSongsController">The DisplayAllSongsController instance to use for managing the display of all songs.</param>
-        public MainMenuController(MenusUI menusUI, InformativeUI informativeUI, ErrorsUI errorsUI, DisplayAllSongsController displayAllSongsController)
+        public MainMenuController(MenusUI menusUI, InformativeUI informativeUI, ErrorsUI errorsUI, DisplayAllSongsController displayAllSongsController, DataController dataController)
         {
             _menusUI = menusUI;
             _errorsUI = errorsUI;
             _informativeUI = informativeUI;
             _displayAllSongsController = displayAllSongsController;
+            _dataController = dataController;
         }
         #endregion
 
@@ -118,7 +120,7 @@ namespace MusicCatalogueOrganizer.Controllers
                     break;
                 case MainMenuOption.DisplayAllSongs:
                     Console.Clear();
-                    _displayAllSongsController.DisplaySongsMenuManager();
+                    _displayAllSongsController.AllSongsMenuController();
                     break;
                 case MainMenuOption.SearchSongs:
                     Console.Clear();

@@ -9,7 +9,6 @@ namespace MusicCatalogueOrganizer.Controllers
         private readonly IMusicCatalogueRepository _musicCatalogueRepository;
         private readonly ErrorsUI _errorsUI;
         private readonly InformativeUI _informativeUI;
-        private bool _isAscendingOrder = true;
         #endregion
 
         #region Constructor

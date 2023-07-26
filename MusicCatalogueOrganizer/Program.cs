@@ -15,7 +15,7 @@ namespace MusicCatalogueOrganizer
             var errorsUI = new ErrorsUI();
             var dataController = new DataController(musicCatalogueRepository, errorsUI, informativeUI);
             var displayAllSongsController = new DisplayAllSongsController(musicCatalogueRepository, errorsUI, menusUI, informativeUI);
-            var mainMenuController = new MainMenuController(menusUI, informativeUI, errorsUI, displayAllSongsController);
+            var mainMenuController = new MainMenuController(menusUI, informativeUI, errorsUI, displayAllSongsController, dataController);
 
             AddTemporaryData(musicCatalogueRepository);
 
