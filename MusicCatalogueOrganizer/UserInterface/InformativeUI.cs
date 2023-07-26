@@ -1,6 +1,7 @@
 ﻿using MusicCatalogueOrganizer.Data;
 using MusicCatalogueOrganizer.Models;
 
+
 namespace MusicCatalogueOrganizer.UserInterface
 {
     public class InformativeUI
@@ -60,6 +61,17 @@ namespace MusicCatalogueOrganizer.UserInterface
             Console.ForegroundColor = ConsoleColor.DarkMagenta;
             Console.WriteLine("Farewell & Thank you for using my application :)");
             Console.ResetColor();
+        }
+
+        public void DisplayCreationDateSortOrder(bool isSortedAscending)
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Sorted by Creation Date from: {0} to {1}.",
+                isSortedAscending ? "oldest" : "newest",
+                isSortedAscending ? "newest" : "oldest");
+            Console.ResetColor();
+
+            Console.WriteLine();
         }
         #endregion
     }

@@ -199,6 +199,7 @@ namespace MusicCatalogueOrganizer.Controllers
                 songs = songs.OrderByDescending(song => song.CreationDate).ToList();
 
             _menusUI.ShowSongsListMenu();
+            _informativeUI.DisplayCreationDateSortOrder(_isSortedAscending);
             _informativeUI.DisplayAllSongs(songs);
         }
 
