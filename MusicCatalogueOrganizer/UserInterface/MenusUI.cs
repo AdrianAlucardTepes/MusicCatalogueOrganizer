@@ -16,52 +16,67 @@
         #region Public Methods
         public void ShowMainMenu()
         {
-            var mainMenuHeadTitleText = "=== Music Catalogue Organizer ===";
-            var correspondingKeyText = "\nPress the corresponding function key to select an option:";
+            DisplayMenuHeader("=== Music Catalogue Organizer ===");
 
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine(mainMenuHeadTitleText);
-            Console.WriteLine(new string('=', mainMenuHeadTitleText.Length));
-            Console.ResetColor();
+            DisplayMenuOptions(new[]
+            {
+                "F1: Add New Song",
+                "F2: Manage Lists",
+                "F3: Edit Song",
+                "F4: Delete Song",
+                "F5: Delete All Songs",
+                "F6: Display All Songs",
+                "F7: Search Songs",
+                "F8: Exit"
+            });
 
-            Console.WriteLine("F1: Add New Song");
-            Console.WriteLine("F2: Manage Lists");
-            Console.WriteLine("F3: Edit Song");
-            Console.WriteLine("F4: Delete Song");
-            Console.WriteLine("F5: Delete All Songs");
-            Console.WriteLine("F6: Display All Songs");
-            Console.WriteLine("F7: Search Songs");
-            Console.WriteLine("F8: Exit");
-
-            Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine(correspondingKeyText);
-            Console.WriteLine(new string('=', correspondingKeyText.Length));
-            Console.ResetColor();
+            DisplayMenuFooter("\nPress the corresponding function key to select an option:");
         }
-
         public void ShowSongsListMenu()
         {
-            var header = $"=== List Of Songs Menu. ===";
-
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine(header);
-            Console.WriteLine(new string('-', header.Length));
-            Console.ResetColor();
+            DisplayMenuHeader("=== List Of Songs Menu. ===");
 
             _informativeUI.DisplayTotalCountedSongs();
 
-            Console.WriteLine("F1: Display Order: Creation Date.");
-            Console.WriteLine("F2: Display Order: Song Name Alphabetical.");
-            Console.WriteLine("F3: Display Order: Release Date.");
-            Console.WriteLine("F4: Display Order: By Rate.");
-            Console.WriteLine("F5: Display Order: Genre Alphabetical");
-            Console.WriteLine("F6: Display Order: By Album Alphabetical.");
-            Console.WriteLine("F7: Display Order: By Album Release Date.");
-            Console.WriteLine("F8: Manual Search.");
-            Console.WriteLine("F9: Return To Main Menu.");
-            Console.WriteLine("F10: Exit.");
+            DisplayMenuOptions(new[]
+            {
+                "F1: Display Order: Creation Date.",
+                "F2: Display Order: Song Name Alphabetical.",
+                "F3: Display Order: Release Date.",
+                "F4: Display Order: By Rate.",
+                "F5: Display Order: Genre Alphabetical",
+                "F6: Display Order: By Album Alphabetical.",
+                "F7: Display Order: By Album Release Date.",
+                "F8: Manual Search.",
+                "F9: Return To Main Menu.",
+                "F10: Exit."
+            });
 
-            Console.WriteLine();
+            DisplayMenuFooter("\nPress the corresponding function key to select an option:");
+        }
+        #endregion
+
+        #region Private Methods
+        private void DisplayMenuHeader(string title)
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine(title);
+            Console.WriteLine(new string('=', title.Length));
+            Console.ResetColor();
+        }
+
+        private void DisplayMenuOptions(string[] options)
+        {
+            foreach (var option in options)
+                Console.WriteLine(option);
+        }
+
+        private void DisplayMenuFooter(string footer)
+        {
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine(footer);
+            Console.WriteLine(new string('=', footer.Length));
+            Console.ResetColor();
         }
         #endregion
     }

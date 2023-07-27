@@ -1,0 +1,38 @@
+I would like to create an application in c# Console App.
+It will be a Music Catalogue.
+
+Also it will contain acions like:
+~Add new song.
+~Edit a song.
+~Delete a song.
+~Display songs.
+	~Display all of them.
+		~Order by Newsest 
+		~Order by Oldest.
+		~Order by alphabetical.
+		~order by rate.
+	~Display by Genre.
+	~Display by Artist.
+~ Search options:
+	~By Title.
+	~By Artist.
+	~By Genre.
+
+~ The user will have the ability to create his own lists. For example Rock from 90s.
+
+Properties am thining:
+Id (Automated)
+Title (Can not be null)
+Artist (Can be null)
+Genre (Can be null)
+Rate (Can be null)
+CreationData (Automated)
+
+I would like you to help me to build that Console App step by step.
+I need also you're suggestions.
+I think i will add this application to my resume to help to land my first job as Software developer.
+also i believe my level close to entry - junior something like that. i would like to know what do you believe.
+so i need to be a good written code.
+
+Here it is what i did so far: I will send the code in separate parts because you have limitation at 4000 letters.
+I will inform you when the code i send you is complete and then let me know what you think and your suggestions.
