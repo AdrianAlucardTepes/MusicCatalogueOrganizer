@@ -1,7 +1,6 @@
 ﻿using MusicCatalogueOrganizer.Data;
 using MusicCatalogueOrganizer.Models;
 
-
 namespace MusicCatalogueOrganizer.UserInterface
 {
     public class InformativeUI
@@ -32,6 +31,7 @@ namespace MusicCatalogueOrganizer.UserInterface
 
             Console.WriteLine();
         }
+
         public void DisplayAllSongs(List<Song> songs)
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
@@ -39,23 +39,22 @@ namespace MusicCatalogueOrganizer.UserInterface
             Console.WriteLine(header);
             Console.WriteLine(new string('=', header.Length));
             Console.ResetColor();
-
             int count = 0;
+
             foreach (var song in songs)
             {
                 count++;
                 var releaseDate = song.ReleaseDate.HasValue ? song.ReleaseDate.Value.ToString("yyyy/MM/dd") : "";
                 var creationDate = song.CreationDate.ToString("yyyy/MM/dd");
 
-                if (count % 2 == 0)
-                    Console.BackgroundColor = ConsoleColor.DarkGray;
-                else
-                    Console.BackgroundColor = ConsoleColor.Black;
+                if (count % 2 == 0) Console.BackgroundColor = ConsoleColor.DarkGray;
+                else Console.BackgroundColor = ConsoleColor.Black;
 
                 Console.WriteLine($"{song.Id,-3} | {song.Title,-20} | {song.Artist,-20} | {song.Album,-30} | {song.Genre,-15} | {song.Rate,-5} | {releaseDate,-15} | {creationDate,-15}");
                 Console.ResetColor();
             }
         }
+
         public void FarewellMessage()
         {
             Console.ForegroundColor = ConsoleColor.DarkMagenta;
@@ -65,57 +64,44 @@ namespace MusicCatalogueOrganizer.UserInterface
 
         public void DisplayCreationDateSortOrder(bool isSortedAscending)
         {
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("Sorted by Creation Date from: {0} to {1}.",
-                isSortedAscending ? "oldest" : "newest",
-                isSortedAscending ? "newest" : "oldest");
-            Console.ResetColor();
-
-            Console.WriteLine();
+            DisplaySortOrder("Creation Date", isSortedAscending ? "oldest" : "newest", isSortedAscending ? "newest" : "oldest");
         }
 
         public void DisplaySongNameAlphabeticalSortOrder(bool isSortedAscending)
         {
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("Sorted by Title in: {0} order.",
-                isSortedAscending ? "ascending" : "descending");
-            Console.ResetColor();
-
-            Console.WriteLine();
+            DisplaySortOrder("Title", isSortedAscending ? "ascending" : "descending");
         }
 
         public void DisplayReleaseDateSortOrder(bool isSortedAscending)
         {
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("Sorted by Release Date from: {0} to {1}.",
-                isSortedAscending ? "oldest" : "newest",
-                isSortedAscending ? "newest" : "oldest");
-            Console.ResetColor();
-
-            Console.WriteLine( );
+            DisplaySortOrder("Release Date", isSortedAscending ? "oldest" : "newest", isSortedAscending ? "newest" : "oldest");
         }
 
         public void DisplayRateSortOrder(bool isSortedAscending)
         {
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("Sorted by Rate from {0} to {1}.",
-                isSortedAscending ? "lowest" : "highest",
-                isSortedAscending ? "highest" : "lowest");
-            Console.ResetColor();
-
-            Console.WriteLine();
+            DisplaySortOrder("Rate", isSortedAscending ? "lowest" : "highest", isSortedAscending ? "highest" : "lowest");
         }
 
         public void DisplayGenreAlphabeticalSortOrder(bool isSortedAscending)
         {
+            DisplaySortOrder("Genre", isSortedAscending ? "ascending" : "descending");
+        }
+        #endregion
+
+        #region Private Methods
+        private void DisplaySortOrder(string criteria, string order, string oppositeOrder = null)
+        {
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("Sorted by Genre in {0} order.",
-                isSortedAscending ? "ascending" : "descending");
+
+            if (oppositeOrder != null)
+                Console.WriteLine("Sorted by {0} from: {1} to {2}.", criteria, order, oppositeOrder);
+            else
+                Console.WriteLine("Sorted by {0} in: {1} order.", criteria, order);
+
             Console.ResetColor();
 
             Console.WriteLine();
         }
-
         #endregion
     }
 }
