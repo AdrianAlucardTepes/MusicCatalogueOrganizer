@@ -91,17 +91,23 @@ namespace MusicCatalogueOrganizer.UserInterface
         #region Private Methods
         private void DisplaySortOrder(string criteria, string order, string oppositeOrder = null)
         {
+            Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.Green;
 
+            string message;
             if (oppositeOrder != null)
-                Console.WriteLine("Sorted by {0} from: {1} to {2}.", criteria, order, oppositeOrder);
+                message = $"Sorted by {criteria} from: {order} to {oppositeOrder}.";
             else
-                Console.WriteLine("Sorted by {0} in: {1} order.", criteria, order);
+                message = $"Sorted by {criteria} in: {order} order.";
+
+            Console.WriteLine(new string('~', message.Length));
+            Console.WriteLine(message);
+            Console.WriteLine(new string('~', message.Length));
 
             Console.ResetColor();
-
             Console.WriteLine();
         }
+
         #endregion
     }
 }
